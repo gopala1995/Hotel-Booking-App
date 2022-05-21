@@ -1,9 +1,9 @@
 const app = require("./index");
 const connect = require("../src/config/db");
-const authRoute = require("../src/models/auth.model.js");
-const hotelRoute = require("../src/models/hotel.model.js");
-const roomRoute = require("../src/models/room.model.js");
-const userRoute = require("../src/models/user.model.js");
+const authRoute = require("../src/Controllers/auth.controllars.js");
+const hotelRoute = require("../src/Controllers/hotel.controllers.js");
+const roomRoute = require("../src/Controllers/room.controllers.js");
+const userRoute = require("../src/Controllers/user.controllers.js");
 
 app.use("/auth", authRoute);
 app.use("/hotel", hotelRoute);
