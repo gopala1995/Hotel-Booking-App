@@ -44,10 +44,13 @@ router.get("/:id", async (req, res) => {
 });
 //GET_ALL
 router.get("/",async(req,res,next)=>{
-  console.log("hi I'm rout");
-  return next()
-  const hotels = await HotelSchema.find().lean().exec()
-  res.status(200).send(hotels)
+  try{
+    const hotels = await HotelSchema.find().lean().exec()
+    res.status(200).send(hotels)
+  }catch(err){
+      next(err)
+  }
+  
 })
 
 

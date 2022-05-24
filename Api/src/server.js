@@ -11,7 +11,16 @@ app.use("/room", roomRoute);
 app.use("/user", userRoute);
 
 app.use((err,req,res,next)=>{
-  res.status(500).json("Hello error from handeler")
+
+  const errstatus = err.status || 500
+  const errMessage = err.message || "something went wrong"
+
+  return res.status(errstatus).json({
+    success: false,
+    status:errstatus,
+    message :errMessage,
+    stack: err.stack
+  })
 })
 
 app.listen(2345, async () => {
