@@ -1,4 +1,5 @@
 const express = require("express");
+const { CreateError } = require("../../utils/errorHandel");
 
 const router = express.Router();
 const HotelSchema = require("../models/Hotel.model");
@@ -43,15 +44,17 @@ router.get("/:id", async (req, res) => {
   res.status(200).send(hotel);
 });
 //GET_ALL
-router.get("/",async(req,res,next)=>{
-  try{
-    const hotels = await HotelSchema.find().lean().exec()
-    res.status(200).send(hotels)
-  }catch(err){
-      next(err)
-  }
-  
-})
+router.get("/", async (req, res, next) => {
+  const failed = true;
 
+  if (failed) return next(CreateError(401, "You are not authenticated!"));
+
+  try {
+    const hotels = await HotelSchema.findById(dfgfsh).lean().exec();
+    res.status(200).send(hotels);
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;
