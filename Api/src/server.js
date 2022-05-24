@@ -10,6 +10,10 @@ app.use("/hotel", hotelRoute);
 app.use("/room", roomRoute);
 app.use("/user", userRoute);
 
+app.use((err,req,res,next)=>{
+  res.status(500).json("Hello error from handeler")
+})
+
 app.listen(2345, async () => {
   try {
     await connect();
